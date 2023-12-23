@@ -1,24 +1,20 @@
-fetch("https://dummyjson.com/users")
+fetch("https://fakestoreapi.com/products")
   .then((data) => {
     return data.json();
   })
   .then((objectData) => {
-    return objectData.users;
-  })
-  .then((usersData) => {
-    let user = "";
+    let productsData = "";
 
-    usersData.map((values, key) => {
-      user += `
+    objectData.map((values, key) => {
+      productsData += `
       <tr>
-      <td>${key + 1}</td>
-      <td>${values.firstName}</td>
-      <td>${values.age}</td>
-      <td>${values.gender}</td>
-      <td>${values.university}</td>
-      <td>${values.address.city}</td>
-      <td><img src="${values.image}" /></td>
-    </tr>`;
+            <td>${key + 1}</td>
+            <td>${values.title}</td>
+            <td>${values.description}</td>
+            <td>${values.category}</td>
+            <td>${values.price}</td>
+            <td><img src="${values.image}" /></td>
+          </tr>`;
     });
-    document.getElementById("table_border").innerHTML = user;
+    document.getElementById("table_body").innerHTML = productsData;
   });
